@@ -1,0 +1,16 @@
+# ------------------------------------------------------------------
+# Shared-hosting helper (e.g. InfinityFree)
+#
+# On many free hosts the web root is a folder called "htdocs", so the
+# whole project gets uploaded there. This file sends every request to
+# the "public" folder, which is the only part CodeIgniter wants the
+# world to see. Because every URL is rewritten to /public/..., files
+# such as .env, app/ and writable/ can never be requested directly.
+#
+# It has no effect when you run the app with `php spark serve`.
+# ------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^$ public/ [L]
+    RewriteRule (.*) public/$1 [L]
+</IfModule>
