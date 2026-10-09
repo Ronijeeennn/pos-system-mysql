@@ -41,6 +41,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `full_name` varchar(100) NOT NULL,
+  `avatar` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
@@ -48,12 +49,12 @@ CREATE TABLE `users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `username`, `full_name`, `created_at`) VALUES (1,'admin01','Patricia Gomez','2026-10-06 09:00:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `created_at`) VALUES (2,'cashier01','Jerome Aquino','2026-10-06 09:01:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `created_at`) VALUES (3,'cashier02','Liza Mendoza','2026-10-06 09:02:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `created_at`) VALUES (4,'stockclerk01','Noel Fernandez','2026-10-06 09:03:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `created_at`) VALUES (5,'manager01','Cristina Ramos','2026-10-06 09:04:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `created_at`) VALUES (6,'super01','Vincent Cruz','2026-10-06 09:05:00');
+INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (1,'admin01','Patricia Gomez',NULL,'2026-10-06 09:00:00');
+INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (2,'cashier01','Jerome Aquino',NULL,'2026-10-06 09:01:00');
+INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (3,'cashier02','Liza Mendoza',NULL,'2026-10-06 09:02:00');
+INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (4,'stockclerk01','Noel Fernandez',NULL,'2026-10-06 09:03:00');
+INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (5,'manager01','Cristina Ramos',NULL,'2026-10-06 09:04:00');
+INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (6,'super01','Vincent Cruz',NULL,'2026-10-06 09:05:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

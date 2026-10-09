@@ -130,3 +130,7 @@ vendor/
 writable/cache/*
 writable/logs/*
 writable/session/*
+
+# Uploaded avatars stay on the server; keep only the folder placeholder in Git
+public/uploads/avatars/*
+!public/uploads/avatars/index.html

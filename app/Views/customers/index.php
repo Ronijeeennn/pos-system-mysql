@@ -1,6 +1,15 @@
 <div class="card">
-    <h1>Customer Accounts</h1>
-    <p>Customer records retrieved from the MySQL database.</p>
+    <div class="page-head">
+        <div>
+            <h1>Customer Accounts</h1>
+            <p>Customer records retrieved from the MySQL database.</p>
+        </div>
+        <a class="btn" href="<?= site_url('customers/new') ?>">+ New Customer</a>
+    </div>
+
+    <?php if (session()->getFlashdata('success')) : ?>
+        <div class="alert success"><?= esc(session()->getFlashdata('success')) ?></div>
+    <?php endif; ?>
 
     <table>
         <thead>
@@ -9,6 +18,7 @@
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,11 +29,12 @@
                         <td><?= esc($customer['full_name']) ?></td>
                         <td><?= esc($customer['email']) ?></td>
                         <td><?= esc($customer['phone']) ?></td>
+                        <td class="actions"><a href="<?= site_url('customers/edit/' . (int) $customer['id']) ?>">Edit</a></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else : ?>
                 <tr>
-                    <td colspan="4">No customer records found.</td>
+                    <td colspan="5">No customer records found.</td>
                 </tr>
             <?php endif; ?>
         </tbody>
