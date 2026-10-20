@@ -18,7 +18,10 @@ class Users extends BaseController
     public function index()
     {
         $userModel = new UserModel();
-        $users     = $userModel->orderBy('id', 'ASC')->findAll();
+        // The password hash is not needed on this page, so it is not even loaded.
+        $users     = $userModel->select('id, username, full_name, avatar, created_at')
+            ->orderBy('id', 'ASC')
+            ->findAll();
 
         // Work out which image to show for each user (their avatar, or the placeholder).
         foreach ($users as &$user) {
@@ -60,12 +63,15 @@ class Users extends BaseController
         $userModel = new UserModel();
         $data      = $this->formData();
 
+        // A new account must start with a password (the Edit form keeps it optional).
+        $userModel->setValidationRule('password', 'required|min_length[8]|max_length[72]');
+
         if (! $userModel->insert($data)) {
             return $this->renderForm(
                 'New User',
                 site_url('users/create'),
                 'Save User',
-                $data + ['avatar' => null],
+                array_diff_key($data, ['password' => 1]) + ['avatar' => null],
                 $userModel->errors(),
                 false
             );
@@ -124,7 +130,7 @@ class Users extends BaseController
                 'Edit User',
                 site_url('users/update/' . $id),
                 'Update User',
-                array_merge($user, $data),
+                array_merge($user, array_diff_key($data, ['password' => 1])),
                 $errors,
                 true
             );
@@ -143,7 +149,7 @@ class Users extends BaseController
                     'Edit User',
                     site_url('users/update/' . $id),
                     'Update User',
-                    array_merge($user, $data),
+                    array_merge($user, array_diff_key($data, ['password' => 1])),
                     ['avatar' => 'The picture could not be processed. Please try a different JPG or PNG file.'],
                     true
                 );
@@ -160,7 +166,7 @@ class Users extends BaseController
                 'Edit User',
                 site_url('users/update/' . $id),
                 'Update User',
-                array_merge($user, $data),
+                array_merge($user, array_diff_key($data, ['password' => 1])),
                 $userModel->errors(),
                 true
             );
@@ -280,13 +286,24 @@ class Users extends BaseController
     // Form helpers
     // ------------------------------------------------------------------
 
-    /** Reads and cleans the submitted text fields. */
+    /**
+     * Reads and cleans the submitted text fields.
+     * The password is taken exactly as typed (never trimmed) and only included when something was
+     * typed, so leaving the box empty on the Edit form keeps the current password.
+     */
     private function formData(): array
     {
-        return [
+        $data = [
             'username'  => trim((string) $this->request->getPost('username')),
             'full_name' => trim((string) $this->request->getPost('full_name')),
         ];
+
+        $password = (string) $this->request->getPost('password');
+        if ($password !== '') {
+            $data['password'] = $password;
+        }
+
+        return $data;
     }
 
     /** Returns the user row or shows a 404 page when the id does not exist. */
@@ -297,6 +314,9 @@ class Users extends BaseController
         if ($user === null) {
             throw PageNotFoundException::forPageNotFound('User not found.');
         }
+
+        // The password hash is never needed by the forms, so it is not passed along.
+        unset($user['password']);
 
         return $user;
     }

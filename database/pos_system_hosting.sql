@@ -38,6 +38,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL,
@@ -47,12 +48,12 @@ CREATE TABLE `users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (1,'admin01','Patricia Gomez',NULL,'2026-10-06 09:00:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (2,'cashier01','Jerome Aquino',NULL,'2026-10-06 09:01:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (3,'cashier02','Liza Mendoza',NULL,'2026-10-06 09:02:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (4,'stockclerk01','Noel Fernandez',NULL,'2026-10-06 09:03:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (5,'manager01','Cristina Ramos',NULL,'2026-10-06 09:04:00');
-INSERT INTO `users` (`id`, `username`, `full_name`, `avatar`, `created_at`) VALUES (6,'super01','Vincent Cruz',NULL,'2026-10-06 09:05:00');
+INSERT INTO `users` (`id`, `username`, `password`, `full_name`, `avatar`, `created_at`) VALUES (1,'admin01','$2y$10$EAdJfRzb5qaKQsKLOeqZv..ZHXQzBUUtlAwZ.RVGrEojfRUSjDr8S','Patricia Gomez',NULL,'2026-10-06 09:00:00');
+INSERT INTO `users` (`id`, `username`, `password`, `full_name`, `avatar`, `created_at`) VALUES (2,'cashier01','$2y$10$TsS3HeZU3GVeZbZRScV/J.btII83x6uHPx7JFvnVWbkYDUrCy7ByG','Jerome Aquino',NULL,'2026-10-06 09:01:00');
+INSERT INTO `users` (`id`, `username`, `password`, `full_name`, `avatar`, `created_at`) VALUES (3,'cashier02','$2y$10$1zj5vFLdVgqA6i13Cg1vWewOWCe5Oaa6r7CMfXw1caLTWLUBPorKC','Liza Mendoza',NULL,'2026-10-06 09:02:00');
+INSERT INTO `users` (`id`, `username`, `password`, `full_name`, `avatar`, `created_at`) VALUES (4,'stockclerk01','$2y$10$cGoR8bfe6BfNujdimxvm0OJaikjKtRf5xLWyvnDKDRqnxI2kSM1gu','Noel Fernandez',NULL,'2026-10-06 09:03:00');
+INSERT INTO `users` (`id`, `username`, `password`, `full_name`, `avatar`, `created_at`) VALUES (5,'manager01','$2y$10$AIqnc/nGUO8TWOx2vJ9ilOwaZI1gFxw8EXx1uYc9G4ecuHe3lP7Xm','Cristina Ramos',NULL,'2026-10-06 09:04:00');
+INSERT INTO `users` (`id`, `username`, `password`, `full_name`, `avatar`, `created_at`) VALUES (6,'super01','$2y$10$trCGfU9xT3yB40BFpADUQeWgTIK1twOu0F/W/2JnQxy1H8Jjt08OO','Vincent Cruz',NULL,'2026-10-06 09:05:00');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

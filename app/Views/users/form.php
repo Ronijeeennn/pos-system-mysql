@@ -29,6 +29,23 @@
             <?php endif; ?>
         </div>
 
+        <div class="field">
+            <?php if ($showAvatar) : ?>
+                <label for="password">New Password</label>
+            <?php else : ?>
+                <label for="password">Password <span class="req">*</span></label>
+            <?php endif; ?>
+            <input type="password" id="password" name="password" maxlength="72" autocomplete="new-password"
+                   class="<?= isset($errors['password']) ? 'invalid' : '' ?>">
+            <div class="hint">
+                8 to 72 characters.
+                <?php if ($showAvatar) : ?>Leave empty to keep the current password.<?php endif; ?>
+            </div>
+            <?php if (isset($errors['password'])) : ?>
+                <div class="error"><?= esc($errors['password']) ?></div>
+            <?php endif; ?>
+        </div>
+
         <?php if ($showAvatar) : ?>
             <div class="field">
                 <label for="avatar">Profile Picture</label>

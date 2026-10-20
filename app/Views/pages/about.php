@@ -14,10 +14,11 @@
             <code>UserModel</code>)</li>
         <li>Forms to create and edit customers and users, with server-side validation</li>
         <li>Avatar upload for users (JPG or PNG, up to 2 MB), saved as a 200 &times; 200 thumbnail</li>
+        <li>Login and logout: only a logged-in user can open the Customer Accounts and User Accounts pages</li>
+        <li>Passwords are stored as hashes (<code>password_hash()</code>) and checked with <code>password_verify()</code></li>
     </ul>
     <h2>Planned Next Steps</h2>
     <ul>
         <li>Add delete functionality for customers and users</li>
-        <li>Add authentication for staff accounts</li>
     </ul>
 </div>

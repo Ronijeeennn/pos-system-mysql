@@ -132,6 +132,30 @@
         }
         .avatar-lg { width: 96px; height: 96px; }
         .avatar-row { display: flex; align-items: center; gap: 1rem; }
+
+        /* ---- login / logout (TFA4) ---- */
+        nav .links { display: flex; align-items: center; }
+        .logout-form { display: inline; margin: 0 0 0 1rem; }
+        .logout-form button {
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 6px;
+            color: #fff;
+            padding: 0.3rem 0.7rem;
+            font: inherit;
+            cursor: pointer;
+        }
+        .logout-form button:hover { background: rgba(255, 255, 255, 0.15); }
+        .login-card { max-width: 420px; margin: 2rem auto; }
+        .alert.info { background: #e8f0fe; color: #1a3d8f; border: 1px solid #b9cdf5; }
+        .field input[type="password"] {
+            width: 100%;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #c4ccd6;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .field input[type="password"].invalid { border-color: #c0392b; background: #fff7f6; }
     </style>
 </head>
 <body>
@@ -142,6 +166,14 @@
             <a href="<?= site_url('about') ?>">About</a>
             <a href="<?= site_url('customers') ?>">Customer Accounts</a>
             <a href="<?= site_url('users') ?>">User Accounts</a>
+            <?php if (session()->get('logged_in') === true) : ?>
+                <form class="logout-form" action="<?= site_url('logout') ?>" method="post">
+                    <?= csrf_field() ?>
+                    <button type="submit">Log out (<?= esc(session()->get('username')) ?>)</button>
+                </form>
+            <?php else : ?>
+                <a href="<?= site_url('login') ?>">Log in</a>
+            <?php endif; ?>
         </div>
     </nav>
     <main>
